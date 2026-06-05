@@ -1,4 +1,4 @@
-<h1 align="center">🎬 Box Office Oracle AI</h1>
+<h1 align="center">🎬 OTT Revenue prediction system using Deep learning and Explainable AI</h1>
 
 <div align="center">
   <strong>Predicting movie revenues using Advanced Multi-Modal Deep Learning and Explainable AI (XAI).</strong>
