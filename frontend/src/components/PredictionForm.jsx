@@ -26,7 +26,8 @@ const PredictionForm = () => {
     setShowExplainers(false);
 
     try {
-      const response = await fetch('/api/predict', {
+      const baseUrl = import.meta.env.VITE_API_URL || '/api';
+      const response = await fetch(`${baseUrl}/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -162,7 +163,7 @@ const PredictionForm = () => {
             <p className="explainer-desc">Shows the global impact of features on the model's predictions.</p>
             <div className="img-container">
               <img 
-                src={`/api/explain/shap?t=${new Date().getTime()}`} 
+                src={`${import.meta.env.VITE_API_URL || '/api'}/explain/shap?t=${new Date().getTime()}`} 
                 alt="SHAP Summary Plot" 
                 className="shap-img" 
               />
@@ -172,7 +173,7 @@ const PredictionForm = () => {
             <h3>LIME Local Explanation</h3>
             <p className="explainer-desc">Breaks down exactly why the model made its decision for a local instance.</p>
             <iframe 
-              src={`/api/explain/lime?t=${new Date().getTime()}`} 
+              src={`${import.meta.env.VITE_API_URL || '/api'}/explain/lime?t=${new Date().getTime()}`} 
               className="lime-frame"
               title="LIME Explanation"
             />
