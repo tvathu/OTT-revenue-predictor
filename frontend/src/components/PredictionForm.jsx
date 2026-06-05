@@ -40,12 +40,18 @@ const PredictionForm = () => {
         })
       });
 
-      if (!response.ok) {
-        const errData = await response.json();
-        throw new Error(errData.detail || 'Failed to fetch prediction');
+      let data;
+      const textResponse = await response.text();
+      
+      try {
+        data = textResponse ? JSON.parse(textResponse) : {};
+      } catch (e) {
+        throw new Error(`Server returned a non-JSON response (${response.status} ${response.statusText}).`);
       }
 
-      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.detail || `Server Error: ${response.status} ${response.statusText}`);
+      }
       setResult(data.predicted_revenue);
       setExplanation(data.explanation);
       setShowExplainers(true);

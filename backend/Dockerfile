@@ -16,6 +16,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application
 COPY . .
 
+# Train the initial PyTorch model so the container has the model files
+RUN python ml/train.py
+
 # Expose port for FastAPI
 EXPOSE 8000
 
